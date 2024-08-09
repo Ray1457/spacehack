@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <main class="flex items-center flex-col px-12 mt-12 mx-auto">
+            <div class="max-w-[40rem]">
+                <h2 class="font-bold text-3xl mb-8">Calendar</h2>
+                <div class="flex flex-col gap-4">
+                    <div class="flex gap-2 justify-between overflow-x-auto">
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 active min-w-16" data-tab-target="#eight">
+                            <span class="text-sm text-gray-200">Sun</span>
+                            <span class="text-lg font-semibold">11</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#nine">
+                            <span class="text-sm text-gray-200">Mon</span>
+                            <span class="text-lg font-semibold">12</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#ten">
+                            <span class="text-sm text-gray-200">Tues</span>
+                            <span class="text-lg font-semibold">13</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#eleven">
+                            <span class="text-sm text-gray-200">Wed</span>
+                            <span class="text-lg font-semibold">14</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#twelve">
+                            <span class="text-sm text-gray-200">Thurs</span>
+                            <span class="text-lg font-semibold">15</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#thirteen">
+                            <span class="text-sm text-gray-200">Fri</span>
+                            <span class="text-lg font-semibold">16</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#fourteen">
+                            <span class="text-sm text-gray-200">Sat</span>
+                            <span class="text-lg font-semibold">17</span>
+                        </button>
+                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#fifteen">
+                            <span class="text-sm text-gray-200">Sun</span>
+                            <span class="text-lg font-semibold">18</span>
+                        </button>
+                    </div>
+                    <div class="flex flex-col tab-content active" id="eight">
+                        <div class="flex flex-row items-center mb-8">
+                            <div class="flex flex-col items-center w-1/5">
+                                <span class="font-semibold text-xl">8:30-9:30</span>
+                                <span class="text-lg text-gray-400">AM</span>
+                            </div>
+                            <div class="flex flex-row w-4/5 bg-orange-400 p-4 rounded-lg items-center gap-2">
+                                <img class="rounded-full" src="https://picsum.photos/seed/picsum/50" alt="">
+                                <p class="font-bold text-2xl">Dentist</p>
+                            </div>
+                        </div>
+                </div>
+                <div class="flex flex-col tab-content" id="nine">
+                    <div class="flex flex-row items-center mb-8">
+                        <div class="flex flex-col items-center w-1/5">
+                            <span class="font-semibold text-xl">8:30-9:00</span>
+                            <span class="text-lg text-gray-400">AM</span>
+                        </div>
+                        <div class="flex flex-row w-4/5 bg-orange-400 p-4 rounded-lg items-center gap-2">
+                            <img class="rounded-full" src="https://picsum.photos/seed/picsum/50" alt="">
+                            <p class="font-bold text-2xl">Neurologist</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-row items-center">
+                        <div class="flex flex-col items-center w-1/5">
+                            <span class="font-semibold text-xl">7:00-8:00</span>
+                            <span class="text-lg text-gray-400">PM</span>
+                        </div>
+                        <div class="flex flex-row w-4/5 bg-orange-400 p-4 rounded-lg items-center gap-2">
+                            <img class="rounded-full" src="https://picsum.photos/seed/picsum/50" alt="">
+                            <p class="font-bold text-2xl">Physiotherapist</p>
+                        </div>
+                    </div>
+            </div></div>
+            
+            <div class="flex flex-col justify-center tab-content" id="ten">
+                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+            </div>
+            <div class="flex flex-col justify-center tab-content" id="eleven">
+                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+            </div>
+            <div class="flex flex-col justify-center tab-content" id="twelve">
+                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+            </div>
+            <div class="flex flex-col justify-center tab-content" id="thirteen">
+                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+            </div>
+            <div class="flex flex-col justify-center tab-content" id="fourteen">
+                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+            </div>
+            
+            <div class="flex flex-col justify-center tab-content" id="fifteen">
+                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+            </div>
+        </div>
+
+        <button class="flex items-center gap-4 border px-2 py-4 hover:bg-slate-900 transition rounded-lg mt-8 interactable" id="openDialog">   
+            <ion-icon name="add-circle-outline" size="large"></ion-icon>
+            <h3 class="text-xl font-semibold">New Appointment</h3>
+        </button>
+
+
+        <!-- dialog -->
+        <dialog class="appointment">
+            <h2></h2>
+            <form action="">
+                <details class="multiple-select">
+                    <summary>Select</summary>
+                    <div class="multiple-select-dropdown">
+                        <label>
+                            <input type="checkbox" hidden name="select" value="1">
+                            <span class="content">Therapy</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" hidden name="select" value="2">
+                            <span class="content">Excercise</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" hidden name="select" value="3">
+                            <span class="content">Yoga</span>
+                        </label>
+                    </div>
+                </details>
+                <input type="datetime-local">
+                <button></button>
+                <button></button>
+            </form>
+        </dialog>
+    </main>
+
+
+  <script>
+    const tabs = document.querySelectorAll('[data-tab-target]');
+    const tabContent = document.querySelectorAll('.tab-content');
+
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click' ,function() {
+            const target = document.querySelector(tab.dataset.tabTarget);
+
+            tabs.forEach(tab => {tab.classList.remove('active')});
+            tabContent.forEach(content => {content.classList.remove('active')});
+            tab.classList.add('active');
+            target.classList.add('active');
+        })
+    })
+
+
+
+  </script>
+{% endblock %}

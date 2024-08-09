@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main>
+      <h1 class="font-bold text-3xl mb-12">Inventory</h1>
+        <ul class="items">
+            {% for item in inventory %}
+            <li>
+                <p>{{ item[0] }}</p>
+                <div class="status"><span id="quantity{{ loop.index }}">{{ item[1] }}</span></div>
+                <button class="btn interactable show-dialog" data-index="{{ loop.index }}" data-name="{{ item[0] }}" data-quantity="{{ item[1] }}">Update</button>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Single Reusable Dialog -->
+        <dialog id="updateDialog">
+            <h1>Update</h1>
+            <form id="updateForm">
+                <p id="itemName" class="text-[#dadada]"></p>
+                <input type="text" placeholder="New Quantity" id="inputQuantity" class="text-[#dadada]">
+                <div>
+                    <button value="cancel" formmethod="dialog" class="btn-2 interactable">Cancel</button>
+                    <button id="confirmBtn" value="default" class="btn-2 interactable">Confirm</button>
+                </div>
+            </form>
+        </dialog>
+    </main>
+
+    <script>
+        const updateDialog = document.getElementById('updateDialog');
+        const inputQuantity = document.getElementById('inputQuantity');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const itemName = document.getElementById('itemName');
+        const updateForm = document.getElementById('updateForm');
+        let currentItemIndex = null;
+
+        document.querySelectorAll('.show-dialog').forEach(button => {
+            button.addEventListener('click', () => {
+                currentItemIndex = button.getAttribute('data-index');
+                itemName.textContent = button.getAttribute('data-name');
+                inputQuantity.value = button.getAttribute('data-quantity');
+                updateDialog.showModal();
+                inputQuantity.focus(); // Focus on the input field when dialog opens
+            });
+        });
+
+        // Handle form submission
+        updateForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            confirmUpdate();
+        });
+
+        // Function to confirm the update
+        function confirmUpdate() {
+            const newQuantity = inputQuantity.value;
+            const name = itemName.textContent;
+            updateDialog.close(newQuantity);
+
+            // Update the quantity display in the list
+            if (currentItemIndex) {
+              document.getElementById(`quantity${currentItemIndex}`).textContent = newQuantity;
+
+              const button = document.querySelector(`.show-dialog[data-index="${currentItemIndex}"]`);
+              if (button) {
+                button.setAttribute('data-quantity', newQuantity);
+              }
+            }
+
+            // Send the update to the backend
+            fetch('/update_inventory', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    quantity: newQuantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+{% endblock %}
