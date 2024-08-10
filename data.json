@@ -1,0 +1,42 @@
+{
+    "user name": {
+        "password": "123",
+        "email": "example@example.com",
+        "inventory": {
+            "water": [
+                10,
+                "kg"
+            ],
+            "bread": [
+                12,
+                "kg"
+            ]
+        },
+        "events": {
+            "22-8-2024": [
+                {
+                    "type": "Therapy",
+                    "datetime": "2024-08-03T14:00"
+                }
+            ]
+        }
+    },
+    "ray": {
+        "password": "1234",
+        "email": "ray@gmail.com",
+        "inventory": {
+            "Wheat": [
+                100,
+                "g"
+            ]
+        },
+        "events": {
+            "2024-08-22": [
+                {
+                    "type": "Therapy",
+                    "datetime": "2024-08-22T13:00"
+                }
+            ]
+        }
+    }
+}

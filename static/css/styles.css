@@ -265,8 +265,8 @@ body:hover > #trailer {
     color: var(--orange-300);
   }
 
-  input[type='text']{
-    outline: 2px solid var(--orange-800);
+  .inv-input{
+    outline: 2px solid var(--dark-fg);
     font: inherit;
     border-radius: 5px;
     color: --white;
@@ -315,6 +315,10 @@ body:hover > #trailer {
   --orange-800 : rgb(154 52 18);
   --orange-900 : rgb(124 45 18);
   --orange-950 : rgb(67 20 7);
+  --black-bg : #0c0c0c;
+  --light-fg : #DB7952;
+  --dark-fg : #852700;
+  --light-bg : #1D233F;
 }
 
 main {
@@ -354,7 +358,7 @@ main ul {
   list-style: none;
   padding: 0;
   width: 25rem;
-  max-width: 50rem;
+  max-width: 65%;
   width: 100%;
 }
 main ul li {

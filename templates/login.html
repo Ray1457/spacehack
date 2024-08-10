@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class=" flex items-center justify-center h-[70vh]">
+    <div class="bg-lightbg p-8 rounded-lg shadow-lg w-full max-w-[30%]">
+        <h2 class="text-white text-2xl font-bold mb-6">Log in</h2>
+        <form method="POST" action="{{ url_for('login') }}">
+            {{ form.hidden_tag() }}
+            <p class="text-red-700 py-2">{{mess}}</p>
+            <div class="mb-4">
+                {{ form.username(class="w-full" ,placeholder="Username") }}
+                {% if form.username.errors %}
+                    <p class="text-red-500 text-xs italic">{{ form.username.errors[0] }}</p>
+                {% endif %}
+            </div>
+
+            <div class="mb-6">
+                {{ form.password(class="w-full" ,placeholder="Password") }}
+                {% if form.password.errors %}
+                    <p class="text-red-500 text-xs italic">{{ form.password.errors[0] }}</p>
+                {% endif %}
+            </div>
+
+            <div class="flex items-center justify-between">
+                {{ form.submit(class="submit-button") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.card {
+  width: 45%;
+  margin: 0 10px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  box-sizing: border-box;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.separator {
+  width: 5px;
+  background: linear-gradient(to bottom, #ffcc00, #ffcc00);
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid var(--light-fg);
+  font-size: 16px;
+  background: none;
+
+}
+
+input:focus {
+  outline: none;
+  border-bottom-color: var(--dark-fg);
+}
+
+.submit-button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--dark-fg);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: var(--light-fg);
+}
+
+</style>
+{% endblock %}

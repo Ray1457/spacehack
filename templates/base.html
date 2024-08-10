@@ -9,8 +9,22 @@
     <script defer src="{{url_for('static' ,filename='js/script.js')}}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                blackbg : "#0c0c0c",
+                lightbg : "#111827",
+                lightfg : "#DB7952",
+                darkfg : "#852700"
+              },
+            },
+          },
+        }
+    </script>
 </head>
-<body class="bg-gray-950 text-white ">
+<body class="bg-blackbg text-white ">
     <div id="trailer" class="hidden"></div>
     
 <header class="min-h-32">
