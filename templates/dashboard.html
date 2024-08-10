@@ -2,152 +2,260 @@
 
 {% block content %}
 
-    <main class="flex items-center flex-col px-12 mt-12 mx-auto">
-            <div class="max-w-[40rem]">
-                <h2 class="font-bold text-3xl mb-8">Calendar</h2>
-                <div class="flex flex-col gap-4">
-                    <div class="flex gap-2 justify-between overflow-x-auto">
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 active min-w-16" data-tab-target="#eight">
-                            <span class="text-sm text-gray-200">Sun</span>
-                            <span class="text-lg font-semibold">11</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#nine">
-                            <span class="text-sm text-gray-200">Mon</span>
-                            <span class="text-lg font-semibold">12</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#ten">
-                            <span class="text-sm text-gray-200">Tues</span>
-                            <span class="text-lg font-semibold">13</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#eleven">
-                            <span class="text-sm text-gray-200">Wed</span>
-                            <span class="text-lg font-semibold">14</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#twelve">
-                            <span class="text-sm text-gray-200">Thurs</span>
-                            <span class="text-lg font-semibold">15</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#thirteen">
-                            <span class="text-sm text-gray-200">Fri</span>
-                            <span class="text-lg font-semibold">16</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#fourteen">
-                            <span class="text-sm text-gray-200">Sat</span>
-                            <span class="text-lg font-semibold">17</span>
-                        </button>
-                        <button class="flex-col bg-green-400 items-center flex p-2 rounded-lg hover:bg-green-400 min-w-16" data-tab-target="#fifteen">
-                            <span class="text-sm text-gray-200">Sun</span>
-                            <span class="text-lg font-semibold">18</span>
-                        </button>
-                    </div>
-                    <div class="flex flex-col tab-content active" id="eight">
-                        <div class="flex flex-row items-center mb-8">
-                            <div class="flex flex-col items-center w-1/5">
-                                <span class="font-semibold text-xl">8:30-9:30</span>
-                                <span class="text-lg text-gray-400">AM</span>
-                            </div>
-                            <div class="flex flex-row w-4/5 bg-orange-400 p-4 rounded-lg items-center gap-2">
-                                <img class="rounded-full" src="https://picsum.photos/seed/picsum/50" alt="">
-                                <p class="font-bold text-2xl">Dentist</p>
-                            </div>
-                        </div>
+<main class="w-[95vw] mx-auto max-w-[80rem]">
+    <h2 class="font-bold text-3xl mb-8 text-center w-full pb-12">Calendar</h2>
+    <div class="w-full flex flex-col md:flex-row gap-10">
+        <div class="w-1/2">
+            <div class="calendar-container">
+                <div class="calendar-header flex justify-between items-center mb-4">
+                    <button class="prev-month text-lg font-bold interactable">❮</button>
+                    <h3 id="calendarMonthYear" class="text-xl font-semibold "></h3>
+                    <button class="next-month text-lg font-bold interactable">❯</button>
                 </div>
-                <div class="flex flex-col tab-content" id="nine">
-                    <div class="flex flex-row items-center mb-8">
-                        <div class="flex flex-col items-center w-1/5">
-                            <span class="font-semibold text-xl">8:30-9:00</span>
-                            <span class="text-lg text-gray-400">AM</span>
-                        </div>
-                        <div class="flex flex-row w-4/5 bg-orange-400 p-4 rounded-lg items-center gap-2">
-                            <img class="rounded-full" src="https://picsum.photos/seed/picsum/50" alt="">
-                            <p class="font-bold text-2xl">Neurologist</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-row items-center">
-                        <div class="flex flex-col items-center w-1/5">
-                            <span class="font-semibold text-xl">7:00-8:00</span>
-                            <span class="text-lg text-gray-400">PM</span>
-                        </div>
-                        <div class="flex flex-row w-4/5 bg-orange-400 p-4 rounded-lg items-center gap-2">
-                            <img class="rounded-full" src="https://picsum.photos/seed/picsum/50" alt="">
-                            <p class="font-bold text-2xl">Physiotherapist</p>
-                        </div>
-                    </div>
-            </div></div>
-            
-            <div class="flex flex-col justify-center tab-content" id="ten">
-                <p class="text-xl font-bold mt-4">Nothing Today!</p>
-            </div>
-            <div class="flex flex-col justify-center tab-content" id="eleven">
-                <p class="text-xl font-bold mt-4">Nothing Today!</p>
-            </div>
-            <div class="flex flex-col justify-center tab-content" id="twelve">
-                <p class="text-xl font-bold mt-4">Nothing Today!</p>
-            </div>
-            <div class="flex flex-col justify-center tab-content" id="thirteen">
-                <p class="text-xl font-bold mt-4">Nothing Today!</p>
-            </div>
-            <div class="flex flex-col justify-center tab-content" id="fourteen">
-                <p class="text-xl font-bold mt-4">Nothing Today!</p>
-            </div>
-            
-            <div class="flex flex-col justify-center tab-content" id="fifteen">
-                <p class="text-xl font-bold mt-4">Nothing Today!</p>
+                <div class="calendar-grid grid grid-cols-7 gap-2">
+                    <div class="day-name">Sun</div>
+                    <div class="day-name">Mon</div>
+                    <div class="day-name">Tue</div>
+                    <div class="day-name">Wed</div>
+                    <div class="day-name">Thu</div>
+                    <div class="day-name">Fri</div>
+                    <div class="day-name">Sat</div>
+                    <!-- Days will be dynamically generated here -->
+                </div>
             </div>
         </div>
 
-        <button class="flex items-center gap-4 border px-2 py-4 hover:bg-slate-900 transition rounded-lg mt-8 interactable" id="openDialog">   
-            <ion-icon name="add-circle-outline" size="large"></ion-icon>
-            <h3 class="text-xl font-semibold">New Appointment</h3>
-        </button>
-
+        <div class="w-1/2 ">
+            <div id="events" class="mt-6">
+                <!-- Events will be displayed here -->
+            </div>
+            <button class="flex items-center gap-4 border px-2 py-4 hover:bg-slate-900 transition rounded-lg mt-8 interactable" id="openDialog">
+                <ion-icon name="add-circle-outline" size="large"></ion-icon>
+                <h3 class="text-xl font-semibold">New Appointment</h3>
+            </button>
+        </div>
 
         <!-- dialog -->
-        <dialog class="appointment">
-            <h2></h2>
-            <form action="">
-                <details class="multiple-select">
-                    <summary>Select</summary>
-                    <div class="multiple-select-dropdown">
-                        <label>
-                            <input type="checkbox" hidden name="select" value="1">
-                            <span class="content">Therapy</span>
+        <dialog class="relative" id="newDialog">
+            <h1 class="my-4">Book an appointment</h1>
+            <button id="closeBtn" class="absolute right-2 top-2"><ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon></button>
+            <form id="appointmentForm" action="" method="POST" class="flex flex-col">                
+                <div class="dropdown relative inline-block text-left">
+                    <div>
+                        <button id="dropdownButton" type="button"
+                        class="inline-flex justify-between items-center w-full rounded-lg border border-slate-800 shadow-sm px-4 py-2 bg-orange-400 text-sm font-medium text-black hover:bg-orange-300">
+                        <span id="dropdownLabel">Select an option</span>
+                        <ion-icon name="chevron-down-outline" class="ml-2 text-lg"></ion-icon>
+                    </button>
+                    </div>
+                
+                    <div id="dropdownMenu" class="hidden w-full origin-top-right absolute right-0 mt-2 rounded-lg shadow-lg bg-green-400 font-semibold z-10">
+                    <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <label class="flex items-center px-4 py-2 text-sm text-black hover:bg-green-100 cursor-pointer rounded-t-lg" role="menuitem">
+                        <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Therapy">
+                        <span>Therapy</span>
                         </label>
-                        <label>
-                            <input type="checkbox" hidden name="select" value="2">
-                            <span class="content">Excercise</span>
+                        <label class="flex items-center px-4 py-2 text-sm text-black hover:bg-green-100 cursor-pointer" role="menuitem">
+                        <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Exercise">
+                        <span>Exercise</span>
                         </label>
-                        <label>
-                            <input type="checkbox" hidden name="select" value="3">
-                            <span class="content">Yoga</span>
+                        <label class="flex items-center px-4 py-2 text-sm text-black hover:bg-green-100 cursor-pointer rounded-b-lg" role="menuitem">
+                        <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Yoga">
+                        <span>Yoga</span>
                         </label>
                     </div>
-                </details>
-                <input type="datetime-local">
-                <button></button>
-                <button></button>
+                    </div>
+                </div>
+                <input type="datetime-local" id="appointmentDatetime" class="rounded-lg p-2 bg-orange-400 hover:bg-orange-300 text-black font-semibold">
+                <button class="btn-2" id="confirmBtn">Confirm</button>
             </form>
         </dialog>
-    </main>
+        <dialog class="relative px-8 py-16 pt-20" id="confirmDialog">
+            <h1>Appointment confirmed!</h1>
+            <button value="cancel" formmethod="dialog" id="closeBtnconfirm" class="absolute right-2 top-2">
+              <ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon>
+            </button>
+        
+        </dialog>
+    </div>
+</main>
+
+<script>
+const tabs = document.querySelectorAll('.date');
+const calendarGrid = document.querySelector('.calendar-grid');
+const eventsContainer = document.getElementById('events');
+let selectedDate;
 
 
-  <script>
-    const tabs = document.querySelectorAll('[data-tab-target]');
-    const tabContent = document.querySelectorAll('.tab-content');
+
+// Calendar initialization
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
+function renderCalendar(month, year) {
+    const firstDay = new Date(year, month).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    calendarGrid.innerHTML = '<div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>';
+    
+    for (let i = 0; i < firstDay; i++) {
+        calendarGrid.innerHTML += `<div></div>`;
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        let date = new Date(year, month, day,5,30).toISOString().split('T')[0];
+        calendarGrid.innerHTML += `<button class="date interactable rounded-lg p-2" interactable data-date="${date}">${day}</button>`;
+    }
+
+    document.getElementById('calendarMonthYear').textContent = `${monthNames[month]} ${year}`;
+}
+
+document.querySelector('.prev-month').addEventListener('click', () => {
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
+    renderCalendar(currentMonth, currentYear);
+});
+
+document.querySelector('.next-month').addEventListener('click', () => {
+    currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
+    currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
+    renderCalendar(currentMonth, currentYear);
+});
 
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click' ,function() {
-            const target = document.querySelector(tab.dataset.tabTarget);
 
-            tabs.forEach(tab => {tab.classList.remove('active')});
-            tabContent.forEach(content => {content.classList.remove('active')});
-            tab.classList.add('active');
-            target.classList.add('active');
-        })
+
+calendarGrid.addEventListener('click', (e) => {
+    if (e.target.classList.contains('date')) {
+        const activern = document.querySelector('.active')
+        if (activern) {
+            activern.classList.remove('active')
+        }
+        selectedDate = e.target.dataset.date;
+        e.target.classList.add('active')
+        fetchEvents(selectedDate);
+    }
+});
+
+function fetchEvents(date) {
+    fetch(`/events/${date}`)
+    .then(response => response.json())
+    .then(data => {
+        displayEvents(data);
+    });
+}
+
+function displayEvents(events) {
+    if (events.length === 0) {
+        eventsContainer.innerHTML = '<p class="text-2xl py-4 font-semibold">Nothing today</p>'; 
+    } else {
+        eventsContainer.innerHTML = events.map(event => `
+            <div class="appointment my-12">
+                <div class="time mr-8">
+                    ${new Date(event.datetime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
+                </div>
+                <div class="details">
+                    <img src="https://picsum.photos/seed/picsum/50" alt="">
+                    <p>${event.type}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+
+renderCalendar(currentMonth, currentYear);
+const now = new Date();
+now.setHours(now.getHours() + 5);
+now.setMinutes(now.getMinutes() + 30);
+const timestr = now.toISOString().split('T')[0];
+const datebtn = document.querySelector(`[data-date="${timestr}"]`);
+datebtn.classList.add('active');
+fetchEvents(timestr);
+
+
+// Dialog and dropdown interactions
+const showButton = document.querySelector('#openDialog')
+const Dialog = document.querySelector('#newDialog')
+const confirmBtn = Dialog.querySelector('#confirmBtn')
+const closeBtn = Dialog.querySelector('#closeBtn')
+const inputEl = Dialog.querySelector('input[type="datetime-local"]')
+
+
+
+const Dialogconfirm = document.querySelector('#confirmDialog')
+const closeBtnconfirm = Dialogconfirm.querySelector('#closeBtnconfirm')
+
+
+closeBtnconfirm.addEventListener('click', (event) => {
+    event.preventDefault();
+    Dialogconfirm.close(); 
+});
+
+closeBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    Dialog.close(); 
+});
+
+showButton.addEventListener('click', () => {
+    Dialog.showModal();
+});
+
+confirmBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    const formData = {
+        datetime: inputEl.value,
+        type: document.querySelector('input[name="dropdown-options"]:checked').value,
+        
+    };
+
+    fetch('/book-appointment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
     })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Appointment booked:', data);
+        Dialog.close();
+        const confirmDialog = document.querySelector('#confirmDialog');
+        confirmDialog.showModal();
+        
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const dropdownLabel = document.getElementById('dropdownLabel');
+    const radioButtons = document.querySelectorAll('input[name="dropdown-options"]');
+
+    dropdownButton.addEventListener('click', function() {
+        dropdownMenu.classList.toggle('hidden');
+    });
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('click', function() {
+            dropdownLabel.textContent = this.value;
+            dropdownMenu.classList.add('hidden');
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+        }
+    });
+});
+</script>
 
 
 
-  </script>
 {% endblock %}
