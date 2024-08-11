@@ -4,7 +4,6 @@ from forms import LoginForm, RegistrationForm
 import json
 from api import create_meeting, send_email
 from datetime import datetime, timedelta
-import bcrypt
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SpaceIt'
@@ -64,10 +63,12 @@ def write_inventory(inventory_list):
     data[current_user.id]["inventory"] = user_inventory
     save_data(data)
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 def check_password(user, passw):
     data = load_data()
     user_data = data.get(user)
-    if user_data and user_data["password"] == passw:
+    if user_data and check_password_hash(user_data["password"], passw):
         return True
     return False
 
@@ -76,8 +77,10 @@ def register_user(user, email, password):
     if user in data:
         return False
     
+    hashed_password = generate_password_hash(password)
+    
     data[user] = {
-        "password": password,
+        "password": hashed_password,
         "email": email,
         "inventory": {},
         "events": {}
@@ -85,6 +88,7 @@ def register_user(user, email, password):
     
     save_data(data)
     return True
+
 
 def get_email(user):
     data = load_data()
