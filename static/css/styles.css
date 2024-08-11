@@ -267,10 +267,12 @@ body:hover > #trailer {
     border: var(--white) 2px solid;
     border-radius: 8px;
     padding: .5rem 3rem;
-    transition: all 500ms;
+    font-weight: 500;
+    transition: color 500ms, background-color 500ms;
   }
   .btn:hover{
-    color: var(--orange-300);
+    background-color: var(--cyan-400);
+    color: var(--black);
   }
 
   .inv-input{
