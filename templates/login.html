@@ -18,7 +18,7 @@
     </svg>
 </div>
 <div class=" flex items-center justify-center h-[70vh]">
-    <div class="bg-lightbg p-8 rounded-lg shadow-lg w-full max-w-[30%]">
+    <div class="bg-lightbg p-8 rounded-lg shadow-lg w-full min-w-[30rem] max-w-[40rem] mx-auto">
         <h2 class="text-white text-2xl font-bold mb-6">Log in</h2>
         <form method="POST" action="{{ url_for('login') }}">
             {{ form.hidden_tag() }}
