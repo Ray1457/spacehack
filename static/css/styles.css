@@ -293,7 +293,7 @@ input:focus {
   cursor: pointer;
   font-weight: 500;
   color: var(--white);
-  border: var(--black) 2px solid;
+  border: var(--white) 2px solid;
   border-radius: 8px;
   padding: .5rem 2.5rem;
   transition: all 300ms;
