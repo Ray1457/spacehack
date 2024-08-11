@@ -271,7 +271,7 @@ body:hover > #trailer {
     transition: color 500ms, background-color 500ms;
   }
   .btn:hover{
-    background-color: var(--cyan-400);
+    background-color: var(--cyan-600);
     color: var(--black);
   }
 

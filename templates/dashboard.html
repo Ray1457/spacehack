@@ -141,6 +141,14 @@
             displayEvents(data);
         });
     }
+
+    iconmap = {
+    'Yoga': '<i class="fa-solid fa-yin-yang"></i>',
+    'Therapy': '<i class="fa-solid fa-people-arrows"></i>',
+    'Exercise': '<i class="fa-solid fa-dumbbell"></i>',
+    'Consult a Doctor': '<i class="fa-solid fa-stethoscope"></i>'
+}
+
     
     function displayEvents(events) {
         if (events.length === 0) {
@@ -153,7 +161,7 @@
                     </div>
                     <div class="details flex justify-between bg-darkfg">
                         <div class="flex items-center gap-2">
-                            <img src="https://picsum.photos/seed/picsum/50" alt="">
+                            ${iconmap[event.type]}
                             <p>${event.type}</p>
                         </div>
                         <a class="text-white bg-blue-600 rounded-full joinbtn border px-3 py-1 hidden" href=${event.meetlink} data-time=${event.datetime} target="_blank">Join</a>
