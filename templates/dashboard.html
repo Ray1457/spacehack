@@ -35,43 +35,51 @@
             </button>
         </div>
 
-        <!-- dialog -->
-        <dialog class="relative" id="newDialog">
-            <h1 class="my-4">Book an appointment</h1>
-            <button id="closeBtn" class="absolute right-2 top-2"><ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon></button>
-            <form id="appointmentForm" action="" method="POST" class="flex flex-col">                
-                <div class="dropdown relative inline-block text-left">
-                    <div>
-                        <button id="dropdownButton" type="button"
-                        class="inline-flex justify-between items-center w-full rounded-lg border border-slate-800 shadow-sm px-4 py-2 bg-orange-400 text-sm font-medium text-black hover:bg-orange-300">
-                        <span id="dropdownLabel">Select an option</span>
-                        <ion-icon name="chevron-down-outline" class="ml-2 text-lg"></ion-icon>
-                    </button>
-                    </div>
-                
-                    <div id="dropdownMenu" class="hidden w-full origin-top-right absolute right-0 mt-2 rounded-lg shadow-lg bg-green-400 font-semibold z-10">
-                    <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                        <label class="flex items-center px-4 py-2 text-sm text-black hover:bg-green-100 cursor-pointer rounded-t-lg" role="menuitem">
-                        <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Therapy">
-                        <span>Therapy</span>
-                        </label>
-                        <label class="flex items-center px-4 py-2 text-sm text-black hover:bg-green-100 cursor-pointer" role="menuitem">
-                        <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Exercise">
-                        <span>Exercise</span>
-                        </label>
-                        <label class="flex items-center px-4 py-2 text-sm text-black hover:bg-green-100 cursor-pointer rounded-b-lg" role="menuitem">
-                        <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Yoga">
-                        <span>Yoga</span>
-                        </label>
-                    </div>
-                    </div>
-                </div>
-                <input type="datetime-local" id="appointmentDatetime" class="rounded-lg p-2 bg-orange-400 hover:bg-orange-300 text-black font-semibold">
-                <button class="btn-2" id="confirmBtn">Confirm</button>
-            </form>
-        </dialog>
+       <!-- dialog -->
+<dialog class="relative" id="newDialog">
+    <h1 class="my-4">Book an appointment</h1>
+    <button id="closeBtn" class="absolute right-2 top-2"><ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon></button>
+    <form id="appointmentForm" action="" method="POST" class="flex flex-col">                
+        <div class="dropdown relative inline-block text-left">
+            <div>
+                <button id="dropdownButton" type="button"
+                class="inline-flex justify-between items-center w-full rounded-lg border border-slate-800 shadow-sm px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-sm font-medium text-[#dadada]">
+                <span id="dropdownLabel">Select an option</span>
+                <ion-icon name="chevron-down-outline" class="ml-2 text-lg"></ion-icon>
+            </button>
+            </div>
+        
+            <div id="dropdownMenu" class="hidden w-full origin-top-right absolute right-0 mt-2 rounded-lg shadow-lg  font-semibold z-10">
+            <div role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer rounded-t-lg bg-cyan-600 hover:bg-cyan-500" role="menuitem">
+                <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Therapy">
+                <span>Therapy</span>
+                </label>
+                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer bg-cyan-600 hover:bg-cyan-500" role="menuitem">
+                <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Exercise">
+                <span>Exercise</span>
+                </label>
+                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer  bg-cyan-600 hover:bg-cyan-500 rounded-b-lg" role="menuitem">
+                <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Yoga">
+                <span>Yoga</span>
+                </label>
+                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer  bg-cyan-600 hover:bg-cyan-500 rounded-b-lg" role="menuitem">
+                <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Consult a Doctor">
+                <span>Consult a Doctor</span>
+                </label>
+            </div>
+            </div>
+        </div>
+        <input type="datetime-local" id="appointmentDatetime" class="rounded-lg p-2 bg-cyan-600 hover:bg-cyan-500 text-[#dadada] font-semibold">
+        <button class="btn-2" id="confirmBtn">Confirm</button>
+        <!-- Error message element -->
+        <p id="errorMessage" class="text-red-500 mt-2 hidden"></p>
+    </form>
+</dialog>
+
         <dialog class="relative px-8 py-16 pt-20" id="confirmDialog">
             <h1>Appointment confirmed!</h1>
+            <p>Check your email for more details</p>
             <button value="cancel" formmethod="dialog" id="closeBtnconfirm" class="absolute right-2 top-2">
               <ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon>
             </button>
@@ -231,6 +239,7 @@
     
     confirmBtn.addEventListener('click', (event) => {
         event.preventDefault();
+        
         const formData = {
             datetime: inputEl.value,
             type: document.querySelector('input[name="dropdown-options"]:checked').value,
@@ -247,10 +256,8 @@
         .then(data => {
             Dialog.close();
             Dialogconfirm.showModal();
-    
-            // Update the event list without reloading
-            const eventDate = formData.datetime.split('T')[0];
-            fetchEvents(eventDate);
+
+            fetchEvents(timestr);
         })
         .catch((error) => {
             console.error('Error:', error);
