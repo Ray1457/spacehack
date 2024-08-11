@@ -81,182 +81,199 @@
 </main>
 
 <script>
-const tabs = document.querySelectorAll('.date');
-const calendarGrid = document.querySelector('.calendar-grid');
-const eventsContainer = document.getElementById('events');
-let selectedDate;
-
-
-
-// Calendar initialization
-const monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
-
-function renderCalendar(month, year) {
-    const firstDay = new Date(year, month).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    calendarGrid.innerHTML = '<div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>';
+    const tabs = document.querySelectorAll('.date');
+    const calendarGrid = document.querySelector('.calendar-grid');
+    const eventsContainer = document.getElementById('events');
+    let selectedDate;
     
-    for (let i = 0; i < firstDay; i++) {
-        calendarGrid.innerHTML += `<div></div>`;
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-        let date = new Date(year, month, day,5,30).toISOString().split('T')[0];
-        calendarGrid.innerHTML += `<button class="date interactable rounded-lg p-2" interactable data-date="${date}">${day}</button>`;
-    }
-
-    document.getElementById('calendarMonthYear').textContent = `${monthNames[month]} ${year}`;
-}
-
-document.querySelector('.prev-month').addEventListener('click', () => {
-    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-    currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
-    renderCalendar(currentMonth, currentYear);
-});
-
-document.querySelector('.next-month').addEventListener('click', () => {
-    currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
-    currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
-    renderCalendar(currentMonth, currentYear);
-});
-
-
-
-
-calendarGrid.addEventListener('click', (e) => {
-    if (e.target.classList.contains('date')) {
-        const activern = document.querySelector('.active')
-        if (activern) {
-            activern.classList.remove('active')
+    // Calendar initialization
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    let currentMonth = new Date().getMonth();
+    let currentYear = new Date().getFullYear();
+    
+    function renderCalendar(month, year) {
+        const firstDay = new Date(year, month).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+        calendarGrid.innerHTML = '<div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>';
+        
+        for (let i = 0; i < firstDay; i++) {
+            calendarGrid.innerHTML += `<div></div>`;
         }
-        selectedDate = e.target.dataset.date;
-        e.target.classList.add('active')
-        fetchEvents(selectedDate);
+    
+        for (let day = 1; day <= daysInMonth; day++) {
+            let date = new Date(year, month, day, 5, 30).toISOString().split('T')[0];
+            calendarGrid.innerHTML += `<button class="date interactable rounded-lg p-2" data-date="${date}">${day}</button>`;
+        }
+    
+        document.getElementById('calendarMonthYear').textContent = `${monthNames[month]} ${year}`;
     }
-});
-
-function fetchEvents(date) {
-    fetch(`/events/${date}`)
-    .then(response => response.json())
-    .then(data => {
-        displayEvents(data);
+    
+    document.querySelector('.prev-month').addEventListener('click', () => {
+        currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+        currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
+        renderCalendar(currentMonth, currentYear);
     });
-}
-
-function displayEvents(events) {
-    if (events.length === 0) {
-        eventsContainer.innerHTML = '<p class="text-2xl py-4 font-semibold">Nothing today</p>'; 
-    } else {
-        eventsContainer.innerHTML = events.map(event => `
-            <div class="appointment my-12">
-                <div class="time mr-8">
-                    ${new Date(event.datetime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
-                </div>
-                <div class="details">
-                    <img src="https://picsum.photos/seed/picsum/50" alt="">
-                    <p>${event.type}</p>
-                    <a class="hidden text-white bg-darkbg rounded-full joinbtn" href=${event.meet-link}>Join</a>
-                </div>
-            </div>
-        `).join('');
+    
+    document.querySelector('.next-month').addEventListener('click', () => {
+        currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
+        currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
+        renderCalendar(currentMonth, currentYear);
+    });
+    
+    calendarGrid.addEventListener('click', (e) => {
+        if (e.target.classList.contains('date')) {
+            const activern = document.querySelector('.active')
+            if (activern) {
+                activern.classList.remove('active')
+            }
+            selectedDate = e.target.dataset.date;
+            e.target.classList.add('active');
+            fetchEvents(selectedDate);
+        }
+    });
+    
+    function fetchEvents(date) {
+        fetch(`/events/${date}`)
+        .then(response => response.json())
+        .then(data => {
+            displayEvents(data);
+        });
     }
-}
-
-
-renderCalendar(currentMonth, currentYear);
-const now = new Date();
-now.setHours(now.getHours() + 5);
-now.setMinutes(now.getMinutes() + 30);
-const timestr = now.toISOString().split('T')[0];
-const datebtn = document.querySelector(`[data-date="${timestr}"]`);
-datebtn.classList.add('active');
-fetchEvents(timestr);
-
-
-// Dialog and dropdown interactions
-const showButton = document.querySelector('#openDialog')
-const Dialog = document.querySelector('#newDialog')
-const confirmBtn = Dialog.querySelector('#confirmBtn')
-const closeBtn = Dialog.querySelector('#closeBtn')
-const inputEl = Dialog.querySelector('input[type="datetime-local"]')
-
-
-
-const Dialogconfirm = document.querySelector('#confirmDialog')
-const closeBtnconfirm = Dialogconfirm.querySelector('#closeBtnconfirm')
-
-
-closeBtnconfirm.addEventListener('click', (event) => {
-    event.preventDefault();
-    Dialogconfirm.close(); 
-});
-
-closeBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    Dialog.close(); 
-});
-
-showButton.addEventListener('click', () => {
-    Dialog.showModal();
-});
-
-confirmBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    const formData = {
-        datetime: inputEl.value,
-        type: document.querySelector('input[name="dropdown-options"]:checked').value,
-        
-    };
-
-    fetch('/book-appointment', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Appointment booked:', data);
-        Dialog.close();
-        const confirmDialog = document.querySelector('#confirmDialog');
-        confirmDialog.showModal();
-        
-    })
-    .catch((error) => {
-        console.error('Error:', error);
+    
+    function displayEvents(events) {
+        if (events.length === 0) {
+            eventsContainer.innerHTML = '<p class="text-2xl py-4 font-semibold">Nothing today</p>'; 
+        } else {
+            eventsContainer.innerHTML = events.map(event => `
+                <div class="appointment my-12">
+                    <div class="time mr-8">
+                        ${new Date(event.datetime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
+                    </div>
+                    <div class="details flex justify-between bg-darkfg">
+                        <div class="flex items-center gap-2">
+                            <img src="https://picsum.photos/seed/picsum/50" alt="">
+                            <p>${event.type}</p>
+                        </div>
+                        <a class="text-white bg-blue-600 rounded-full joinbtn border px-3 py-1 hidden" href=${event.meetlink} data-time=${event.datetime} target="_blank">Join</a>
+                    </div>
+                </div>
+            `).join('');
+    
+            enableJoinButtons();  // Call this after rendering events
+        }
+    }
+    
+    function enableJoinButtons() {
+        const joinbtns = document.querySelectorAll('.joinbtn');
+    
+        joinbtns.forEach(jbtn => {
+            let dt = jbtn.dataset.time;
+    
+            if (dt) {
+                dt = new Date(dt);
+                const currentTime = new Date();
+    
+                const differenceInMilliseconds = dt - currentTime;
+                const thirtyMinutesInMilliseconds = 30 * 60 * 1000;
+    
+                if (differenceInMilliseconds <= thirtyMinutesInMilliseconds && differenceInMilliseconds >= 0) {
+                    jbtn.classList.remove('hidden');
+                } else {
+                    jbtn.classList.add('hidden');
+                }
+            }
+        });
+    }
+    
+    renderCalendar(currentMonth, currentYear);
+    
+    const now = new Date();
+    now.setHours(now.getHours() + 5);
+    now.setMinutes(now.getMinutes() + 30);
+    const timestr = now.toISOString().split('T')[0];
+    const datebtn = document.querySelector(`[data-date="${timestr}"]`);
+    datebtn.classList.add('active');
+    fetchEvents(timestr);
+    
+    // Dialog and dropdown interactions
+    const showButton = document.querySelector('#openDialog');
+    const Dialog = document.querySelector('#newDialog');
+    const confirmBtn = Dialog.querySelector('#confirmBtn');
+    const closeBtn = Dialog.querySelector('#closeBtn');
+    const inputEl = Dialog.querySelector('input[type="datetime-local"]');
+    
+    const Dialogconfirm = document.querySelector('#confirmDialog');
+    const closeBtnconfirm = Dialogconfirm.querySelector('#closeBtnconfirm');
+    
+    closeBtnconfirm.addEventListener('click', (event) => {
+        event.preventDefault();
+        Dialogconfirm.close(); 
     });
-    fetchEvents(formData.datetime.split('T')[0]);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const dropdownButton = document.getElementById('dropdownButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-    const dropdownLabel = document.getElementById('dropdownLabel');
-    const radioButtons = document.querySelectorAll('input[name="dropdown-options"]');
-
-    dropdownButton.addEventListener('click', function() {
-        dropdownMenu.classList.toggle('hidden');
+    
+    closeBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        Dialog.close(); 
     });
-
-    radioButtons.forEach(radio => {
-        radio.addEventListener('click', function() {
-            dropdownLabel.textContent = this.value;
-            dropdownMenu.classList.add('hidden');
+    
+    showButton.addEventListener('click', () => {
+        Dialog.showModal();
+    });
+    
+    confirmBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const formData = {
+            datetime: inputEl.value,
+            type: document.querySelector('input[name="dropdown-options"]:checked').value,
+        };
+    
+        fetch('/book-appointment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            Dialog.close();
+            Dialogconfirm.showModal();
+    
+            // Update the event list without reloading
+            const eventDate = formData.datetime.split('T')[0];
+            fetchEvents(eventDate);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
     });
-
-    document.addEventListener('click', function(event) {
-        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-            dropdownMenu.classList.add('hidden');
-        }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownLabel = document.getElementById('dropdownLabel');
+        const radioButtons = document.querySelectorAll('input[name="dropdown-options"]');
+    
+        dropdownButton.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    
+        radioButtons.forEach(radio => {
+            radio.addEventListener('click', function() {
+                dropdownLabel.textContent = this.value;
+                dropdownMenu.classList.add('hidden');
+            });
+        });
+    
+        document.addEventListener('click', function(event) {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
     });
-});
-</script>
+    </script>
+    
 
 
 

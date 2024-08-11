@@ -107,16 +107,21 @@ def add_event(user, date, datetime, event_type):
     if date not in user_data["events"]:
         user_data["events"][date] = []
 
-    # meetlink = create_meeting(event_type, datetime + ':00', add_mins(datetime, 30)+ ':00')
     meetlink = ''
+    meetlink = create_meeting(event_type, datetime + ':00', add_mins(datetime, 30)+ ':00')
+
+
     
     user_data["events"][date].append({
         "type": event_type,
         "datetime": datetime,
-        "meet-link" : meetlink
+        "meetlink" : meetlink
     })
     
     save_data(data)
+
+    send_email(user_data['email'], 'Appoinment confirmed', f"Dear User, \n Your appoinment has been confirmed. Kindly join the given meet link at the time of the appoinment. \nAppoinment Type: {event_type}\n Appoinment Date : {datetime.split('T')[0]} \n Appoinment Time : {datetime.split('T')[1]} \n Appoinment Link : {meetlink}")
+
     return True
 
 @app.route('/')
@@ -137,6 +142,10 @@ def inventory():
         if int(i[1]) <= 2:
             alert = f'Only {i[1]} {i[2]} of {i[0]} remaining. Restock it immediately'
     return render_template('inventory.html', inventory=inventory_data, alert=alert)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
