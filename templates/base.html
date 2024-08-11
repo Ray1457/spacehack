@@ -26,8 +26,9 @@
           },
         }
     </script>
+      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
-<body class="bg-blackbg text-white ">
+<body class="bg-blackbg text-white overflow-x-hidden">
     <div id="trailer" class="hidden"></div>
     
 <header class="min-h-32">
@@ -88,6 +89,11 @@
 
 {% block content %}
 {% endblock %}
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 </body>
 </html>

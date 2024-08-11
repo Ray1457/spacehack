@@ -2,7 +2,12 @@
     "ray1457": {
         "password": "1@Million",
         "email": "rishitnarang222@gmail.com",
-        "inventory": {},
+        "inventory": {
+            "q": [
+                1,
+                "kg"
+            ]
+        },
         "events": {
             "2024-08-11": [
                 {

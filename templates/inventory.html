@@ -29,12 +29,12 @@
       <p id="itemName" class="text-[#dadada]"></p>
       <div class="flex">
         <input type="text" placeholder="New Quantity" id="inputQuantity" class="text-[#dadada] inv-input flex-1">
-        <select id="inputUnit" class="text-[#dadada] inv-input flex-1 ml-2">
-          <option value="kg">kg</option>
-          <option value="g">g</option>
-          <option value="l">l</option>
-          <option value="ml">ml</option>
-          <option value="pieces">pieces</option>
+        <select id="inputUnit" class="text-[#dadada] inv-input flex-1 ml-2 bg-none">
+          <option class="bg-lightbg fg-[#fff]" value="kg">kg</option>
+          <option class="bg-lightbg fg-[#fff]" value="g">g</option>
+          <option class="bg-lightbg fg-[#fff]" value="l">l</option>
+          <option class="bg-lightbg fg-[#fff]" value="ml">ml</option>
+          <option class="bg-lightbg fg-[#fff]" value="pieces">pieces</option>
         </select>
       </div>
       <div>
@@ -51,12 +51,12 @@
     <form id="addItemForm">
       <input type="text" placeholder="Item Name" id="newItemName" class="text-[#dadada] inv-input" required>
       <input type="text" placeholder="Quantity" id="newItemQuantity" class="text-[#dadada] inv-input" required>
-      <select id="newItemUnit" class="text-[#dadada] inv-input" required>
-        <option value="kg">kg</option>
-        <option value="g">g</option>
-        <option value="l">l</option>
-        <option value="ml">ml</option>
-        <option value="pieces">pieces</option>
+      <select id="inputUnit" class="text-[#dadada] inv-input flex-1 ml-2 bg-none">
+        <option class="bg-lightbg fg-[#fff]" value="kg">kg</option>
+        <option class="bg-lightbg fg-[#fff]" value="g">g</option>
+        <option class="bg-lightbg fg-[#fff]" value="l">l</option>
+        <option class="bg-lightbg fg-[#fff]" value="ml">ml</option>
+        <option class="bg-lightbg fg-[#fff]" value="pieces">pieces</option>
       </select>
       <div>
         <button type="button" id="cancelAddItemBtn" class="btn-2 interactable">Cancel</button>
