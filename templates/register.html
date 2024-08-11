@@ -20,7 +20,7 @@
 <div class="flex items-center justify-center h-[70vh] min-w-[30rem] max-w-[30rem] mx-auto">
     <div class="bg-lightbg p-8 rounded-lg shadow-lg w-full min-w-[30rem] max-w-[40rem] mx-auto">
         <h2 class="text-white text-2xl font-bold mb-6">Register</h2>
-        <form method="POST" action="{{ url_for('register') }}">
+        <form class="log" method="POST" action="{{ url_for('register') }}">
             {{ form.hidden_tag() }}
             <p class="text-red-700 py-2">{{ mess }}</p>
 
@@ -89,14 +89,14 @@ h2 {
   color: #333;
 }
 
-form {
+.log {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   justify-content: space-between;
 }
 
-input {
+.log input {
   margin-bottom: 15px;
   padding: 10px;
   border: none;
@@ -105,7 +105,7 @@ input {
   background: none;
 }
 
-input:focus {
+.log input:focus {
   outline: none;
   border-bottom-color: var(--cyan-600);
 }
