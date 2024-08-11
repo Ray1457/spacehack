@@ -159,6 +159,7 @@ function displayEvents(events) {
                 <div class="details">
                     <img src="https://picsum.photos/seed/picsum/50" alt="">
                     <p>${event.type}</p>
+                    <a class="hidden text-white bg-darkbg rounded-full joinbtn" href=${event.meet-link}>Join</a>
                 </div>
             </div>
         `).join('');
@@ -229,6 +230,7 @@ confirmBtn.addEventListener('click', (event) => {
     .catch((error) => {
         console.error('Error:', error);
     });
+    fetchEvents(formData.datetime.split('T')[0]);
 });
 
 document.addEventListener('DOMContentLoaded', function() {

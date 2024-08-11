@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
 from forms import LoginForm, RegistrationForm
 import json
+from api import create_meeting, send_email
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SpaceIt'
@@ -11,6 +13,13 @@ JSON_FILE = 'data.json'
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'  # Redirect to the login page if not logged in
+
+def add_mins(dtstr, mins):
+    dt = datetime.strptime(dtstr, "%Y-%m-%dT%H:%M")
+    new_dt = dt + timedelta(minutes=mins)
+    new_datetime_str = new_dt.strftime("%Y-%m-%dT%H:%M")
+    return new_datetime_str
+
 
 def load_data():
     with open(JSON_FILE, 'r') as file:
@@ -97,10 +106,14 @@ def add_event(user, date, datetime, event_type):
     
     if date not in user_data["events"]:
         user_data["events"][date] = []
+
+    # meetlink = create_meeting(event_type, datetime + ':00', add_mins(datetime, 30)+ ':00')
+    meetlink = ''
     
     user_data["events"][date].append({
         "type": event_type,
-        "datetime": datetime
+        "datetime": datetime,
+        "meet-link" : meetlink
     })
     
     save_data(data)
@@ -138,13 +151,21 @@ def login():
             mess = 'Wrong Password/Username'
     return render_template('login.html', form=form, mess=mess)
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     mess = ''
     if form.validate_on_submit():
         if register_user(form.username.data, form.email.data, form.password.data):
-            return redirect(url_for('login'))
+            user = User(form.username.data)
+            login_user(user)
+            return redirect(url_for('home'))
         else:
             mess = 'User already exists, please choose a different username'
     return render_template('register.html', form=form, mess=mess)
