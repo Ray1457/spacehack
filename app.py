@@ -9,7 +9,7 @@ import bcrypt
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SpaceIt'
 JSON_FILE = 'data.json'
-SALT = bcrypt.gensalt()
+
 
 # Initialize the LoginManager
 login_manager = LoginManager()
@@ -66,7 +66,6 @@ def write_inventory(inventory_list):
 
 def check_password(user, passw):
     data = load_data()
-    passw = bcrypt.hashpw(passw, SALT)
     user_data = data.get(user)
     if user_data and user_data["password"] == passw:
         return True
@@ -76,7 +75,7 @@ def register_user(user, email, password):
     data = load_data()
     if user in data:
         return False
-    password = bcrypt.hashpw(password, SALT)
+    
     data[user] = {
         "password": password,
         "email": email,
