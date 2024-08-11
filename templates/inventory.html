@@ -237,10 +237,12 @@
     });
   }
 
+
+
   function addNewItem() {
     const newItemName = document.getElementById('newItemName').value;
     const newItemQuantity = document.getElementById('newItemQuantity').value;
-    const newItemUnit = document.getElementById('newItemUnit').value;
+    const newItemUnit = document.getElementById('inputUnit').value;
     addItemDialog.close();
 
     const newIndex = document.querySelectorAll('.item-wrapper').length + 1;
