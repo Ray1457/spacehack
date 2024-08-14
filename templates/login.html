@@ -37,12 +37,14 @@
             </div>
 
             <div class="flex items-center justify-between">
-                {{ form.submit(class="submit-button") }}
+                {{ form.submit(class="btn") }}
             </div>
-
-            <a href="{{url_for('register')}}" class="hover:underline cursor-pointer text-[#dadada]">
-              Dont have an account yet?
-            </a>
+            <div class="flex gap-2">
+              <P>Dont have an account yet?</P>
+              <a href="{{url_for('register')}}" class="hover:underline cursor-pointer text-cyan-200">
+                Register
+              </a>
+            </div>
         </form>
     </div>
 </div>
@@ -73,11 +75,6 @@
   justify-content: space-between;
 }
 
-.separator {
-  width: 5px;
-  background: linear-gradient(to bottom, #ffcc00, #ffcc00);
-}
-
 h2 {
   margin-bottom: 20px;
   color: #333;
@@ -103,21 +100,6 @@ h2 {
 .log input:focus {
   outline: none;
   border-bottom-color: var(--cyan-600);
-}
-
-.submit-button {
-  padding: 10px;
-  border: none !important;
-  border-radius: 5px;
-  background-color: var(--cyan-600) !important;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: var(--cyan-400);
 }
 
 </style>
