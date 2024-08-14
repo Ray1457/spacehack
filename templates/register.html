@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+  {% extends "base.html" %}
 
 {% block content %}
 <div class="flex items-center justify-center lg:my-32">
@@ -44,11 +44,14 @@
             </div>
 
             <div class="flex items-center justify-between">
-                {{ form.submit(class="submit-button") }}
+                {{ form.submit(class="btn") }}
             </div>
-            <a href="{{url_for('login')}}" class="hover:underline cursor-pointer text-[#dadada]">
-              Already have an account?
-            </a>
+            <div class="flex gap-2">
+              <p>Already have an account?</p>
+              <a href="{{url_for('login')}}" class="hover:underline cursor-pointer text-cyan-200">
+                Log In
+              </a>
+            </div>
         </form>
     </div>
 </div>
@@ -77,11 +80,6 @@
   justify-content: space-between;
 }
 
-.separator {
-  width: 5px;
-  background: linear-gradient(to bottom, #ffcc00, #ffcc00);
-}
-
 h2 {
   margin-bottom: 20px;
   color: #333;
@@ -105,22 +103,7 @@ h2 {
 
 .log input:focus {
   outline: none;
-  border-bottom-color: var(--cyan-600);
-}
-
-.submit-button {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: var(--cyan-600);
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: var(--cyan-400);
+  border-bottom-color: var(--cyan-100);
 }
 </style>
 {% endblock %}
