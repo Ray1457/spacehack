@@ -1,3 +1,51 @@
 {
-    
+    "ray14572": {
+        "password": "scrypt:32768:8:1$utRvT9JSNxpw8Ylv$372e0b550599cc92c181d31d264d6d8addf6c41fab81b49b03af35ecddac12a656e9fba5d2287b05de523ac6d5a5071ff0c5fbf5727582bc519de249a73470a7",
+        "email": "rishitnarang222@gmail.com",
+        "inventory": {
+            "Q": [
+                12,
+                "kg"
+            ],
+            "Wheat": [
+                1,
+                "kg"
+            ]
+        },
+        "events": {
+            "2024-08-10": [
+                {
+                    "type": "Exercise",
+                    "datetime": "2024-08-10T23:59",
+                    "meetlink": "https://meet.google.com/vpu-kwpu-vba"
+                }
+            ],
+            "2024-08-12": [
+                {
+                    "type": "Exercise",
+                    "datetime": "2024-08-12T00:10",
+                    "meetlink": "https://meet.google.com/ahh-gxjj-abp"
+                },
+                {
+                    "type": "Exercise",
+                    "datetime": "2024-08-12T00:16",
+                    "meetlink": "https://meet.google.com/hvc-eyii-rua"
+                }
+            ],
+            "2024-08-13": [
+                {
+                    "type": "Therapy",
+                    "datetime": "2024-08-13T23:50",
+                    "meetlink": "https://meet.google.com/ief-qovk-kad"
+                }
+            ],
+            "2024-08-14": [
+                {
+                    "type": "Exercise",
+                    "datetime": "2024-08-14T00:11",
+                    "meetlink": "https://meet.google.com/myf-isgc-xvf"
+                }
+            ]
+        }
+    }
 }

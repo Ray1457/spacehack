@@ -2,57 +2,63 @@
 
 {% block content %}
 
-<main class=" flex flex-col gap-8 mt-16 mx-12 items-center text-slate-50">
-        <section class="flex gap-4 w-full justify-between items-start max-w-[80rem] flex-col md:flex-row">
-          <div class="flex items-center"><h1 class="font-black text-7xl bg-gradient-to-r from-cyan-400 to-cyan-600 text-transparent bg-clip-text">Our Story</h1> <ion-icon name="arrow-down-outline" class="-rotate-45 text-8xl mt-2 text-cyan-600"></ion-icon></div>
-            <div class="w-full md:w-3/5 text-lg mt-4"><p class="font-semibold mb-4">
-                At SpaceIT, we are committed to helping astronauts navigate the challenges of space by offering a seamless blend of inventory tracking and health management. Our software ensures that supplies are efficiently monitored and health is carefully maintained, providing critical support in the vast expanse of space.</p><p>In the demanding and isolating environment of space, where every decision can have significant consequences, SpaceIT becomes an indispensable tool for astronauts. Our system not only tracks vital resources in real time, preventing shortages and reducing waste, but it also manages health appointments, to ensure astronauts' health is never sidelined. This comprehensive approach allows astronauts to maintain their physical and mental well-being while ensuring that their mission remains on track. By reducing the burden of resource management and health monitoring, SpaceIT enables astronauts to focus fully on their mission objectives, confident in the knowledge that their health and resources are meticulously managed.
-
-            </p></div>
-        </section>
-        <section class="-mx-12 px-12 py-16 flex flex-col items-center rounded-lg text-white w-full mb-20">
-            <h1 class="mb-24 text-6xl font-bold ">Meet our Team</h1>
-            
-            <div class="flex flex-wrap gap-8 justify-around text-slate-800 brightness-[0.9]">
-                <div class="h-[350px] w-[300px] bg-cyan-500 rounded-lg flex flex-col items-center p-12">
-                    <div class="h-32 w-32 bg-slate-400 rounded-full overflow-hidden">
-                        <img src="../static/img/face1.jpeg" alt="">
-                    </div>
-                    <span class="font-bold text-3xl mt-12">Alexia Garner</span>
-                    <span class="text-xl">Vice President</span>
+<main class="flex flex-col gap-8 mt-16 mx-12 items-center text-slate-50">
+    <section class="flex gap-4 w-full justify-between items-start max-w-[80rem] flex-col md:flex-row">
+        <div class="flex items-center" data-aos="fade-down">
+            <h1 class="font-black text-7xl bg-gradient-to-r from-cyan-400 to-cyan-600 text-transparent bg-clip-text">
+                Our Story
+            </h1>
+            <ion-icon name="arrow-down-outline" class="-rotate-45 text-8xl mt-2 text-cyan-600"></ion-icon>
+        </div>
+        <div class="w-full md:w-3/5 text-lg mt-4" data-aos="fade-up">
+            <p class="font-semibold mb-4">
+                At SpaceIT, we are committed to helping astronauts navigate the challenges of space by offering a seamless blend of inventory tracking and health management. Our software ensures that supplies are efficiently monitored and health is carefully maintained, providing critical support in the vast expanse of space.
+            </p>
+            <p>
+                In the demanding and isolating environment of space, where every decision can have significant consequences, SpaceIT becomes an indispensable tool for astronauts. Our system not only tracks vital resources in real time, preventing shortages and reducing waste, but it also manages health appointments, to ensure astronauts' health is never sidelined. This comprehensive approach allows astronauts to maintain their physical and mental well-being while ensuring that their mission remains on track. By reducing the burden of resource management and health monitoring, SpaceIT enables astronauts to focus fully on their mission objectives, confident in the knowledge that their health and resources are meticulously managed.
+            </p>
+        </div>
+    </section>
+    <section class="-mx-12 px-12 py-16 flex flex-col items-center rounded-lg text-white w-full mb-20" data-aos="fade-up">
+        <h1 class="mb-24 text-6xl font-bold">Meet our Team</h1>
+        <div class="flex flex-wrap gap-8 justify-around text-slate-800 brightness-[0.9]">
+            <div class="h-[350px] w-[300px] bg-cyan-500 rounded-lg flex flex-col items-center p-12" data-aos="flip-left">
+                <div class="h-32 w-32 bg-slate-400 rounded-full overflow-hidden">
+                    <img src="../static/img/face1.jpeg" alt="">
                 </div>
-                <div class="h-[350px] w-[300px] bg-cyan-500	 rounded-lg flex flex-col items-center p-12">
-                    <div class="h-32 w-32 bg-slate-400 rounded-full overflow-hidden">
-                        <img src="../static/img/face3.png" alt="">
-                    </div>
-                    <span class="font-bold text-3xl mt-12">Steve Son</span>
-                    <span class="text-xl">Department Head</span>
+                <span class="font-bold text-3xl mt-12">Alexia Garner</span>
+                <span class="text-xl">Vice President</span>
+            </div>
+            <div class="h-[350px] w-[300px] bg-cyan-500 rounded-lg flex flex-col items-center p-12" data-aos="flip-left" data-aos-delay="100">
+                <div class="h-32 w-32 bg-slate-400 rounded-full overflow-hidden">
+                    <img src="../static/img/face3.png" alt="">
                 </div>
-                <div class="h-[350px] w-[300px] bg-cyan-500 rounded-lg flex flex-col items-center p-12">
-                    <div class="h-32 w-32 bg-slate-400 rounded-full overflow-hidden">
-                        <img src="../static/img/face2.jpeg" alt="">
-                    </div>
-                    <span class="font-bold text-3xl mt-12">Lisa Johann</span>
-                    <span class="text-xl">Sales Manager</span>
+                <span class="font-bold text-3xl mt-12">Steve Son</span>
+                <span class="text-xl">Department Head</span>
+            </div>
+            <div class="h-[350px] w-[300px] bg-cyan-500 rounded-lg flex flex-col items-center p-12" data-aos="flip-left" data-aos-delay="200">
+                <div class="h-32 w-32 bg-slate-400 rounded-full overflow-hidden">
+                    <img src="../static/img/face2.jpeg" alt="">
                 </div>
+                <span class="font-bold text-3xl mt-12">Lisa Johann</span>
+                <span class="text-xl">Sales Manager</span>
             </div>
-        </section>
-        <section class="flex flex-col gap-24 items-center max-w-[80rem] mb-16 text-white mb-32">
-            <div class="flex flex-col md:flex-row gap-8 pt-24 justify-between border-solid border-t-8 border-slate-200 rounded-lg items-center">
-                <h1 class="font-extrabold text-7xl">500+</h1>
-                <p class="w-3/5">With over 500 successful missions supported, SpaceIt has become an essential partner for astronauts. Our inventory management system ensures that every critical supply is accounted for, contributing to the success and safety of space missions.</p>
-            </div>
-            <div class="flex flex-col md:flex-row gap-8 pt-24 justify-between border-solid border-t-8 border-slate-200 rounded-lg items-center">
-                <h1 class="font-extrabold text-7xl">2,000+</h1>
-                <p class="w-3/5">More than 2,000 astronauts have relied on SpaceIt's wellness appointments to maintain their mental and physical health while in space. Our tailored support system helps them stay mission-ready, even in the most challenging environments.</p>
-            </div>
-            <div class="flex flex-col md:flex-row gap-8 pt-24 justify-between border-solid border-t-8 border-slate-200 rounded-lg items-center">
-                <h1 class="font-extrabold text-7xl">1M+</h1>
-                <p class="w-3/5">SpaceIt's technology has impacted over 1 million hours of space missions, ensuring that astronauts have the resources they need when they need them. Our innovative approach to inventory and wellness management is a key component in the ongoing exploration of space.</p>
-            </div>
-        </section>
-        
-    </main>
-   
+        </div>
+    </section>
+    <section class="flex flex-col gap-24 items-center max-w-[80rem] mb-16 text-white mb-32">
+        <div class="flex flex-col md:flex-row gap-8 pt-24 justify-between border-solid border-t-8 border-slate-200 rounded-lg items-center" data-aos="fade-up">
+            <h1 class="font-extrabold text-7xl">500+</h1>
+            <p class="w-3/5">With over 500 successful missions supported, SpaceIt has become an essential partner for astronauts. Our inventory management system ensures that every critical supply is accounted for, contributing to the success and safety of space missions.</p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8 pt-24 justify-between border-solid border-t-8 border-slate-200 rounded-lg items-center" data-aos="fade-up" data-aos-delay="100">
+            <h1 class="font-extrabold text-7xl">2,000+</h1>
+            <p class="w-3/5">More than 2,000 astronauts have relied on SpaceIt's wellness appointments to maintain their mental and physical health while in space. Our tailored support system helps them stay mission-ready, even in the most challenging environments.</p>
+        </div>
+        <div class="flex flex-col md:flex-row gap-8 pt-24 justify-between border-solid border-t-8 border-slate-200 rounded-lg items-center" data-aos="fade-up" data-aos-delay="200">
+            <h1 class="font-extrabold text-7xl">1M+</h1>
+            <p class="w-3/5">SpaceIt's technology has impacted over 1 million hours of space missions, ensuring that astronauts have the resources they need when they need them. Our innovative approach to inventory and wellness management is a key component in the ongoing exploration of space.</p>
+        </div>
+    </section>
+</main>
 
 {% endblock %}

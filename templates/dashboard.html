@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<main class="w-[95vw] mx-auto max-w-[80rem]">
+<main class="w-screen mx-auto p-0 m-0">
     <h2 class="font-bold text-3xl mb-8 text-center w-full pb-12">Calendar</h2>
-    <div class="w-full flex flex-col md:flex-row gap-10">
-        <div class="w-1/2">
-            <div class="calendar-container">
+    <div class="w-full flex flex-col lg:flex-row items-center justify-center">
+        <div class="">
+            <div class="calendar-container lg:mr-8">
                 <div class="calendar-header flex justify-between items-center mb-4">
                     <button class="prev-month text-lg font-bold interactable">❮</button>
                     <h3 id="calendarMonthYear" class="text-xl font-semibold "></h3>
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="w-1/2 ">
+        <div class="flex flex-col items-center lg:px-16">
             <div id="events" class="mt-6">
                 <!-- Events will be displayed here -->
             </div>
@@ -112,7 +112,7 @@
     
         for (let day = 1; day <= daysInMonth; day++) {
             let date = new Date(year, month, day, 5, 30).toISOString().split('T')[0];
-            calendarGrid.innerHTML += `<button class="date interactable rounded-lg p-2" data-date="${date}">${day}</button>`;
+            calendarGrid.innerHTML += `<button class="date interactable rounded-lg p-2 w-12 lg:w-16" data-date="${date}">${day}</button>`;
         }
     
         document.getElementById('calendarMonthYear').textContent = `${monthNames[month]} ${year}`;
@@ -164,7 +164,7 @@
         } else {
             eventsContainer.innerHTML = events.map(event => `
                 <div class="appointment my-12">
-                    <div class="time mr-8">
+                    <div class="time mr-8 whitespace-nowrap">
                         ${new Date(event.datetime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                     </div>
                     <div class="details flex justify-between bg-darkfg">

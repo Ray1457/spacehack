@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="absolute ml-[30%] mt-[5%] z-[-1]">
-  <svg width="700" height="475" viewBox="0 0 700 475" fill="none" xmlns="http://www.w3.org/2000/svg" class="blur-[100px]">
-      <defs>
-        <style>
+<div class="flex items-center justify-center lg:my-32">
+  <svg width="100%" height="auto" viewBox="0 0 700 475" fill="none" xmlns="http://www.w3.org/2000/svg" class="blur-[100px] absolute z-[-1] ml-24 max-w-[50rem]">
+    <defs>
+      <style>
           @keyframes colorChange {
             0%, 100% { fill: rgb(9, 126, 180); }
             50% { fill: rgb(9, 46, 115); }
@@ -12,13 +12,11 @@
           .blob {
             animation: colorChange 8s infinite linear;
           }
-        </style>
-      </defs>
-      <path class="blob" d="M59.6878 70.4072C2.64247 112.7 -16.8108 220.14 15.7866 303.15C34.714 338.439 85.6079 417.473 137.764 451.308C202.958 493.601 346.492 482.305 380.666 392.728C414.841 303.151 608.848 251.138 582.56 142.122C556.271 33.1053 429.562 31.2664 323.621 6.83623C217.68 -17.5939 116.733 28.1141 59.6878 70.4072Z" fill="rgb(34 197 94)"/>
-    </svg>
-</div>
-<div class="flex items-center justify-center h-[70vh] min-w-[30rem] max-w-[30rem] mx-auto">
-    <div class="bg-lightbg p-8 rounded-lg shadow-lg w-full min-w-[30rem] max-w-[40rem] mx-auto">
+      </style>
+    </defs>
+    <path class="blob" d="M59.6878 70.4072C2.64247 112.7 -16.8108 220.14 15.7866 303.15C34.714 338.439 85.6079 417.473 137.764 451.308C202.958 493.601 346.492 482.305 380.666 392.728C414.841 303.151 608.848 251.138 582.56 142.122C556.271 33.1053 429.562 31.2664 323.621 6.83623C217.68 -17.5939 116.733 28.1141 59.6878 70.4072Z" fill="rgb(34 197 94)"/>
+  </svg>
+    <div class="bg-lightbg p-8 rounded-lg shadow-lg w-screen max-w-[30rem] mx-4">
         <h2 class="text-white text-2xl font-bold mb-6">Register</h2>
         <form class="log" method="POST" action="{{ url_for('register') }}">
             {{ form.hidden_tag() }}

@@ -14,6 +14,8 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://kit.fontawesome.com/7e789d1d5a.js" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="../static/img/logo-removebg-preview.png">
+    <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
     <script>
         tailwind.config = {
           theme: {
@@ -31,6 +33,12 @@
       <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body class="bg-blackbg text-white overflow-x-hidden">
+  <div class="loading-wrapper brightness=[0.85]">
+    <video id="loadingVideo" autoplay muted width="300" height="300">
+        <source src="../static/img/loadin anim 2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  </div>
     <div id="trailer" class="hidden"></div>
     
 <header class="min-h-32 ">
@@ -57,7 +65,7 @@
 
         <div class="flex justify-center w-full nav-hidden" id="hidden-nav">
             <nav class="p-4 border rounded-full text-center" style="backdrop-filter: blur(10px);">
-                <a href="{{url_for('home')}}" class=" text-center interactable px-4 nav-link">Home</a>
+                <a h  ref="{{url_for('home')}}" class=" text-center interactable px-4 nav-link">Home</a>
                 <a href="{{url_for('inventory')}}" class=" text-center interactable px-4 nav-link">Inventory</a>
                 <a href="{{url_for('dashboard')}}" class=" text-center interactable px-4 nav-link">Health</a>
                 <a href="{{url_for('about')}}" class=" text-center interactable px-4 nav-link">About Us</a>
@@ -70,7 +78,7 @@
     
       
     <div class="nav-responsive">
-        <div class="flex w-full items-start z-[99999] justify-between p-12 fixed">
+        <div class="flex items-center z-[99999] justify-between p-12 fixed w-screen" >
             <div class="flex items-center">
                 <img src="../static/img/logo-removebg-preview.png" alt="" class="h-16 w-16">
                 <a class="interactable font-bold text-2xl heading" href="{{url_for('home')}}">SpaceIt</a>
@@ -82,12 +90,16 @@
                     <span></span>
                     <span></span>
                   </div>
-                <nav class="mobile-nav flex flex-col gap-8 absolute top-20 left-8">
+                <nav class="mobile-nav flex flex-col gap-8 absolute ">
                     <a href="{{url_for('home')}}" class="font-semibold text-3xl">Home</a>
                     <a href="{{url_for('inventory')}}" class="font-semibold text-3xl">Inventory</a>
                     <a href="{{url_for('dashboard')}}" class="font-semibold text-3xl">Dashboard</a>
                     <a href="{{url_for('about')}}" class="font-semibold text-3xl">About</a>
-                    <a href="{{url_for('register')}}" class="font-semibold text-3xl rounded-lg py-2 px-6 pb-8 border">Sign Up</a>
+                    {% if current_user.is_authenticated %}
+                      <a href="{{url_for('logout')}}" class="font-semibold text-3xl">Logout</a>
+                    {% else %}
+                      <a href="{{url_for('login')}}" class="font-semibold text-3xl">Login</a>
+                    {% endif %}
                 </nav>
             </div>
         </div>
@@ -99,9 +111,9 @@
 {% endblock %}
 
 <footer class="w-full bg-slate-800 py-16 mt-20">
-    <section class="bg-slate-800 py-12">
+    <section class="bg-slate-800 py-12 text-center">
       <div class="container mx-auto flex flex-col items-center justify-center">
-        <h2 class="text-3xl font-bold text-white mb-4">Subscribe to Our Newsletter</h2>
+        <h2 class="text-3xl font-bold text-white mb-4 mx-2">Subscribe to Our Newsletter</h2>
         <p class="text-white mb-8">Stay updated with the latest news and updates from SpaceIt</p>
         <form id="newsletterForm" class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <input id="emailInput" type="email" placeholder="Your Email Address"
@@ -214,7 +226,25 @@
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
+  window.addEventListener('load', ()=> {
+    setTimeout(()=> {
+        document.querySelector('.loading-wrapper').classList.add('faded');
+    }, 500);
+})
+
   AOS.init();
+  const lenis = new Lenis()
+
+  lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
 </script>
 
 </body>
