@@ -36,7 +36,7 @@
         </div>
 
        <!-- dialog -->
-<dialog class="relative" id="newDialog">
+<dialog class="relative max-w-[24rem]" id="newDialog">
     <h1 class="my-4">Book an appointment</h1>
     <button id="closeBtn" class="absolute right-2 top-2"><ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon></button>
     <form id="appointmentForm" action="" method="POST" class="flex flex-col">                
@@ -72,8 +72,7 @@
         </div>
         <input type="datetime-local" id="appointmentDatetime" class="rounded-lg p-2 bg-cyan-600 hover:bg-cyan-500 text-[#dadada] font-semibold">
         <button class="btn-2" id="confirmBtn">Confirm</button>
-        <!-- Error message element -->
-        <p id="errorMessage" class="text-red-500 mt-2 hidden"></p>
+        <p id="errorMessage" class="text-red-500 mt-2"></p>
     </form>
 </dialog>
 
@@ -172,12 +171,12 @@
                             ${iconmap[event.type]}
                             <p>${event.type}</p>
                         </div>
-                        <a class="text-white bg-blue-600 rounded-full joinbtn border px-3 py-1 hidden" href=${event.meetlink} data-time=${event.datetime} target="_blank">Join</a>
+                        <a class="text-white rounded-full joinbtn border px-3 py-1 hover:bg-cyan-400 hidden" href=${event.meetlink} data-time=${event.datetime} target="_blank">Join</a>
                     </div>
                 </div>
             `).join('');
     
-            enableJoinButtons();  // Call this after rendering events
+            enableJoinButtons(); 
         }
     }
     
@@ -222,6 +221,8 @@
     
     const Dialogconfirm = document.querySelector('#confirmDialog');
     const closeBtnconfirm = Dialogconfirm.querySelector('#closeBtnconfirm');
+
+    const bookError = document.getElementById('errorMessage');
     
     closeBtnconfirm.addEventListener('click', (event) => {
         event.preventDefault();
@@ -254,14 +255,21 @@
         })
         .then(response => response.json())
         .then(data => {
-            Dialog.close();
-            Dialogconfirm.showModal();
+            if (data.status === 'success') {
 
-            fetchEvents(timestr);
+                Dialog.close();
+                Dialogconfirm.showModal();
+
+                fetchEvents(timestr);
+            } else {
+                bookError.textContent = data.message;
+            }
         })
-        .catch((error) => {
+        .catch(error => {
             console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again.');
         });
+
     });
     
     document.addEventListener('DOMContentLoaded', function() {

@@ -22,6 +22,15 @@ def add_mins(dtstr, mins):
     return new_datetime_str
 
 
+def get_diff(tstr1, tstr2):
+    dt1 = datetime.strptime(tstr1, "%Y-%m-%dT%H:%M")
+    dt2 = datetime.strptime(tstr2, "%Y-%m-%dT%H:%M")
+    diff = dt2 - dt1
+    return diff.total_seconds() / 60
+
+def dtstr_to_date(dtstr):
+    return dtstr.split('T')[0]
+    
 def load_data():
     with open(JSON_FILE, 'r') as file:
         return json.load(file)
@@ -104,7 +113,7 @@ def get_events(user, date):
         return user_data["events"].get(date, [])
     return []
 
-def add_event(user, date, datetime, event_type):
+def add_event(user, date, dt, event_type):
     data = load_data()
     user_data = data.get(user)
     if not user_data:
@@ -114,19 +123,19 @@ def add_event(user, date, datetime, event_type):
         user_data["events"][date] = []
 
     meetlink = ''
-    meetlink = create_meeting(event_type, datetime + ':00', add_mins(datetime, 30)+ ':00')
+    meetlink = create_meeting(event_type, dt + ':00', add_mins(dt, 30)+ ':00')
 
 
     
     user_data["events"][date].append({
         "type": event_type,
-        "datetime": datetime,
+        "datetime": dt,
         "meetlink" : meetlink
     })
     
     save_data(data)
 
-    send_email(user_data['email'], 'Appoinment confirmed', f"Dear User, \n Your appoinment has been confirmed. Kindly join the given meet link at the time of the appoinment. \nAppoinment Type: {event_type}\n Appoinment Date : {datetime.split('T')[0]} \n Appoinment Time : {datetime.split('T')[1]} \n Appoinment Link : {meetlink}")
+    send_email(user_data['email'], 'Appoinment confirmed', f"Dear User, \n Your appoinment has been confirmed. Kindly join the given meet link at the time of the appoinment. \nAppoinment Type: {event_type}\n Appoinment Date : {dt.split('T')[0]} \n Appoinment Time : {dt.split('T')[1]} \n Appoinment Link : {meetlink}")
 
     return True
 
@@ -191,15 +200,25 @@ def register():
 def book_appointment():
     data = request.json
     event_type = data.get('type')
-    datetime = data.get('datetime')
+    dt = data.get('datetime')
+    current_time = datetime.now().strftime("%Y-%m-%dT%H:%M")
+    diff = get_diff(current_time, dt)
+    if 0 < diff < 5:
+        return jsonify({'status': 'error', 'message': 'Appointments must be booked at least 5 minutes in advance'}), 400
+    elif diff < 0:
+        return jsonify({'status': 'error', 'message': 'Sorry, We are still working on time travel, please try again later :)'}), 400
 
-    if not event_type or not datetime:
+    appts = get_events(current_user.id , dtstr_to_date(dt))
+    for appt in appts:
+        if -30 < get_diff(dt, appt['datetime'] ) < 30:
+            return jsonify({'status': 'error', 'message': 'A gap of 30 minutes must be there between two appointments'}), 400
+
+    if not event_type or not dt:
         return jsonify({'status': 'error', 'message': 'Invalid data'}), 400
 
-    date = datetime.split('T')[0]
+    date = dt.split('T')[0]
 
-    # Store the event using the add_event function
-    success = add_event(current_user.id, date, datetime, event_type)
+    success = add_event(current_user.id, date, dt, event_type)
     
     if success:
         return jsonify({'status': 'success', 'message': 'Appointment booked'})
@@ -228,10 +247,8 @@ def update_inventory_api():
     if not item_name or new_quantity is None or not unit:
         return jsonify({'status': 'error', 'message': 'Invalid data'}), 400
 
-    # Read current inventory
     inventory = read_inventory()
 
-    # Find and update the item
     item_updated = False
     for row in inventory:
         if row[0] == item_name:
@@ -243,7 +260,7 @@ def update_inventory_api():
     if not item_updated:
         inventory.append([item_name, new_quantity,unit])
 
-    # Write the updated inventory back to the JSON file
+
     write_inventory(inventory)
 
     return jsonify({'status': 'success', 'message': 'Inventory updated', 'data': inventory})
@@ -258,10 +275,8 @@ def delete_inventory_api():
     if not item_name:
         return jsonify({'status': 'error', 'message': 'Invalid data'}), 400
 
-    # Read current inventory
     inventory = read_inventory()
 
-    # Find and delete the item
     item_deleted = False
     updated_inventory = []
     for row in inventory:
@@ -273,7 +288,7 @@ def delete_inventory_api():
     if not item_deleted:
         return jsonify({'status': 'error', 'message': 'Item not found'}), 404
 
-    # Write the updated inventory back to the storage
+
     write_inventory(updated_inventory)
 
     return jsonify({'status': 'success', 'message': 'Item deleted', 'data': updated_inventory})

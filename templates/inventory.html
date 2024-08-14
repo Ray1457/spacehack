@@ -22,7 +22,7 @@
   </button>
 
   <dialog id="updateDialog" class="relative">    
-    <button value="cancel" formmethod="dialog" class="absolute top-2 right-2 text-white interactable"><ion-icon size="large" name="close-circle-outline"></ion-icon></button>
+    <button value="cancel" id="updateCloseBtn" formmethod="dialog" class="absolute top-2 right-2 text-white interactable"><ion-icon size="large" name="close-circle-outline"></ion-icon></button>
     <h1>Update</h1>
     <form id="updateForm">
       <p id="itemName" class="text-[#dadada] font-bold text-2xl"></p>
@@ -87,6 +87,7 @@
   const updateForm = document.getElementById('updateForm');
   const addItemForm = document.getElementById('addItemForm');
   const nodeletebtn = document.getElementById('nodeletebtn');
+  const updateCloseBtn = document.getElementById('updateCloseBtn');
   let currentItemIndex = null;
 
   const threshold = 5;
@@ -104,6 +105,10 @@
 
     addItemBtn.addEventListener('click', () => {
       addItemDialog.showModal();
+    });
+
+    updateCloseBtn.addEventListener('click', () => {
+      updateDialog.close();
     });
 
     nodeletebtn.addEventListener('click', () => {
