@@ -16,6 +16,7 @@
     <link rel="icon" type="image/x-icon" href="../static/img/logo-removebg-preview.png">
     <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script> 
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         tailwind.config = {
           theme: {
@@ -33,12 +34,7 @@
       <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body class="bg-blackbg text-white overflow-x-hidden">
-  <div class="loading-wrapper brightness=[0.85]">
-    <video id="loadingVideo" autoplay muted width="300" height="300">
-        <source src="../static/img/loadin anim 2.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-  </div>
+  
     <div id="trailer" class="hidden"></div>
     
 <header class="min-h-32 ">
@@ -54,21 +50,30 @@
                 <a href="{{url_for('inventory')}}" class=" text-center interactable px-4 nav-link">Inventory</a>
                 <a href="{{url_for('dashboard')}}" class=" text-center interactable px-4 nav-link">Health</a>
                 <a href="{{url_for('about')}}" class=" text-center interactable px-4 nav-link">About Us</a>
+                
+                {% if current_user.is_authenticated %}
+                <a href="{{url_for('logout')}}" class=" text-center interactable px-4 nav-link">Logout</a>
+               
+                {% endif %}
             </div>
         </nav>
-
         {% if current_user.is_authenticated %}
-            <a href="{{url_for('logout')}}" class="border rounded-full py-2 px-6 hover:bg-slate-600 transition interactable">Logout</a>
-        {% else %}
-            <a href="{{url_for('login')}}" class="border rounded-full py-2 px-6 hover:bg-slate-600 transition interactable">Login</a>
-        {% endif %}
+        <button class="btn-2 bg-cyan-600 font-bold" id="SOS">SOS</button>
+     {% else %}
+        <a href="{{url_for('login')}}" class="rounded-full border px-6 py-[0.65rem] interactable">Login</a>
+      {% endif %}
+
 
         <div class="flex justify-center w-full nav-hidden" id="hidden-nav">
             <nav class="p-4 border rounded-full text-center" style="backdrop-filter: blur(10px);">
-                <a h  ref="{{url_for('home')}}" class=" text-center interactable px-4 nav-link">Home</a>
-                <a href="{{url_for('inventory')}}" class=" text-center interactable px-4 nav-link">Inventory</a>
-                <a href="{{url_for('dashboard')}}" class=" text-center interactable px-4 nav-link">Health</a>
-                <a href="{{url_for('about')}}" class=" text-center interactable px-4 nav-link">About Us</a>
+              <a href="{{url_for('home')}}" class=" text-center interactable px-4 nav-link">Home</a>
+              <a href="{{url_for('inventory')}}" class=" text-center interactable px-4 nav-link">Inventory</a>
+              <a href="{{url_for('dashboard')}}" class=" text-center interactable px-4 nav-link">Health</a>
+              <a href="{{url_for('about')}}" class=" text-center interactable px-4 nav-link">About Us</a>
+              {% if current_user.is_authenticated %}
+                <a href="{{url_for('logout')}}" class=" text-center interactable px-4 nav-link">Logout</a>
+              {% endif %}
+                
             </nav>
         </div>
 
@@ -95,7 +100,6 @@
                     <a href="{{url_for('inventory')}}" class="font-semibold text-3xl">Inventory</a>
                     <a href="{{url_for('dashboard')}}" class="font-semibold text-3xl">Dashboard</a>
                     <a href="{{url_for('about')}}" class="font-semibold text-3xl">About</a>
-<<<<<<< HEAD
                     {% if current_user.is_authenticated %}
                       <a href="{{url_for('logout')}}" class="font-semibold text-3xl">Logout</a>
                     {% else %}
@@ -107,51 +111,39 @@
         
     </div>
 </header>
+<!-- 
+<dialog id="SosDialog">
+  <div class="bg-cyan-600 text-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3">
+    <h2 class="text-2xl font-bold mb-4">Rescue Mission Launched</h2>
+    <p class="text-cyan-400 mb-4">Your SOS signal has been received and a rescue mission is on its way.</p>
+    <div class="flex justify-end">
+        <button class="bg-cyan-400 text-black font-bold py-2 px-4 rounded hover:bg-cyan-500" onclick="sosDialog.close()">Confirm</button>
+    </div>
+  </div>
+</dialog> -->
+
+<dialog class="relative max-w-[26rem] rounded-lg shadow-lg" id="SosDialog">
+  <button id="closeBtn" class="absolute right-2 top-2">
+    <ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon>
+  </button>
+  <div class="relative px-8 py-16 pt-20 text-white bg-lightbg flex flex-col items-center justify-around gap-8 rounded-lg shadow-md bg-cyan-600">
+    <h1 class="text-3xl font-semibold">Rescue Mission Launched</h1>
+    <p class="text-center">Your SOS signal has been received and a rescue mission is on its way.</p>
+    <button class="inline-flex justify-center items-center w-full rounded-lg border border-slate-800 shadow-sm px-4 py-2 bg-cyan-700 hover:bg-cyan-500 text-sm font-medium text-[#dadada]" onclick="sosDialog.close()">
+      Ok
+    </button>
+  </div>
+</dialog>
+
+
+
 
 {% block content %}
 {% endblock %}
 
-<footer class="w-full bg-slate-800 py-16 mt-20">
+<footer class="w-full bg-slate-800 pb-8 pt-0 mt-20">
     <section class="bg-slate-800 py-12 text-center">
-      <div class="container mx-auto flex flex-col items-center justify-center">
-        <h2 class="text-3xl font-bold text-white mb-4 mx-2">Subscribe to Our Newsletter</h2>
-        <p class="text-white mb-8">Stay updated with the latest news and updates from SpaceIt</p>
-        <form id="newsletterForm" class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <input id="emailInput" type="email" placeholder="Your Email Address"
-            class="py-2 px-4 w-full sm:w-auto bg-white text-slate-800 rounded-full focus:outline-none"
-          />
-          <button type="submit" class="py-2 px-6 bg-sky-400 text-white rounded-full hover:bg-sky-500 focus:outline-none">Subscribe</button>
-        </form>
-        <p id="successMessage" class="text-green-500 mt-4 hidden">Thank you for subscribing!</p>
-        <p id="errorMessage" class="text-red-500 mt-4 hidden">Something went wrong. Please try again later.</p>
-      </div>
-    </section>
-    
-    <script>
-      document.getElementById('newsletterForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var email = document.getElementById('emailInput').value;
-        if(validateEmail(email)) {
-          
-          setTimeout(function() {
-            
-            document.getElementById('successMessage').classList.remove('hidden');
-            document.getElementById('errorMessage').classList.add('hidden');
-           
-            document.getElementById('emailInput').value = '';
-          }, 1000);
-        } else {
-     
-          document.getElementById('successMessage').classList.add('hidden');
-          document.getElementById('errorMessage').classList.remove('hidden');
-        }
-      });
-    
-      function validateEmail(email) {
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-      }
-    </script>
+      
     <div class="md:px-12 lg:px-28">
       <div class="container m-auto space-y-6 text-white">
         <img src="../static/img/logo-removebg-preview.png" alt="logo" class="m-auto w-32" />
@@ -246,6 +238,14 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf)
+
+
+const sosbtn = document.getElementById('SOS');
+const sosDialog = document.getElementById('SosDialog');
+
+sosbtn.addEventListener('click' , () => {
+  sosDialog.showModal()
+});
 </script>
 
 </body>

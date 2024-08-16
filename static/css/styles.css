@@ -30,6 +30,16 @@
   --cyan-950    : rgb(8 51 68);
 }
 
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -100; 
+}
+
+
 ::-webkit-scrollbar {
   width: 3px;
 }

@@ -33,7 +33,11 @@
             </button>
         </div>
 
+<<<<<<< Updated upstream
 <dialog class="relative max-w-[24rem]" id="newDialog">
+=======
+<dialog class="relative max-w-[26rem]" id="newDialog">
+>>>>>>> Stashed changes
     <h1 class="my-4">Book an appointment</h1>
     <button id="closeBtn" class="absolute right-2 top-2"><ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon></button>
     <form id="appointmentForm" action="" method="POST" class="flex flex-col">                
@@ -60,9 +64,13 @@
                 <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Yoga">
                 <span>Yoga</span>
                 </label>
-                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer  bg-cyan-600 hover:bg-cyan-500 rounded-b-lg" role="menuitem">
+                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer bg-cyan-600 hover:bg-cyan-500" role="menuitem">
                 <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Consult a Doctor">
                 <span>Consult a Doctor</span>
+                </label>
+                <label class="flex items-center px-4 py-2 text-sm text-[#dadada] cursor-pointer  bg-cyan-600 hover:bg-cyan-500 rounded-b-lg" role="menuitem">
+                <input type="radio" hidden name="dropdown-options" class="form-radio h-4 w-4 text-indigo-600" value="Talk to Family">
+                <span>Talk to Family</span>
                 </label>
             </div>
             </div>
@@ -73,9 +81,9 @@
     </form>
 </dialog>
 
-        <dialog class="relative px-8 py-16 pt-20" id="confirmDialog">
+        <dialog class="relative px-8 py-16 pt-20 text-white" id="confirmDialog">
             <h1>Appointment confirmed!</h1>
-            <p>Check your email for more details</p>
+            <p>Check your email for more details!</p>
             <button value="cancel" formmethod="dialog" id="closeBtnconfirm" class="absolute right-2 top-2">
               <ion-icon name="close-circle-outline" size="large" class="text-white"></ion-icon>
             </button>
@@ -150,7 +158,8 @@
     'Yoga': '<i class="fa-solid fa-yin-yang"></i>',
     'Therapy': '<i class="fa-solid fa-people-arrows"></i>',
     'Exercise': '<i class="fa-solid fa-dumbbell"></i>',
-    'Consult a Doctor': '<i class="fa-solid fa-stethoscope"></i>'
+    'Consult a Doctor': '<i class="fa-solid fa-stethoscope"></i>',
+    'Talk to Family' : '<i class="fa-solid fa-people-roof"></i>'
 }
 
     
@@ -163,7 +172,7 @@
                     <div class="time mr-8 whitespace-nowrap">
                         ${new Date(event.datetime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}
                     </div>
-                    <div class="details flex justify-between bg-darkfg">
+                    <div class="details flex justify-between bg-darkfg min-w-[20rem]">
                         <div class="flex items-center gap-2">
                             ${iconmap[event.type]}
                             <p>${event.type}</p>
@@ -209,7 +218,6 @@
     datebtn.classList.add('active');
     fetchEvents(timestr);
     
-    // Dialog and dropdown interactions
     const showButton = document.querySelector('#openDialog');
     const Dialog = document.querySelector('#newDialog');
     const confirmBtn = Dialog.querySelector('#confirmBtn');

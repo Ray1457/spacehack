@@ -2,16 +2,7 @@
     "ray14572": {
         "password": "scrypt:32768:8:1$utRvT9JSNxpw8Ylv$372e0b550599cc92c181d31d264d6d8addf6c41fab81b49b03af35ecddac12a656e9fba5d2287b05de523ac6d5a5071ff0c5fbf5727582bc519de249a73470a7",
         "email": "rishitnarang222@gmail.com",
-        "inventory": {
-            "Q": [
-                12,
-                "kg"
-            ],
-            "Wheat": [
-                19,
-                "kg"
-            ]
-        },
+        "inventory": {},
         "events": {
             "2024-08-10": [
                 {
@@ -77,7 +68,32 @@
                     "datetime": "2024-08-01T19:30",
                     "meetlink": "https://meet.google.com/qdi-qest-yjm"
                 }
+            ],
+            "2024-08-16": [
+                {
+                    "type": "Talk to Family",
+                    "datetime": "2024-08-16T15:52",
+                    "meetlink": "https://meet.google.com/ksm-zcyj-sht"
+                }
+            ],
+            "2024-08-17": [
+                {
+                    "type": "Talk to Family",
+                    "datetime": "2024-08-17T13:54",
+                    "meetlink": "https://meet.google.com/rrv-rzsu-cjq"
+                }
             ]
         }
+    },
+    "User": {
+        "password": "scrypt:32768:8:1$n6dKUthDDjmf5M1P$eba28928b7f622da928f02c533076a9ffbf6e29ebc10f42a270b88d1a14712868f8a6b3d30f965eac8bd3e8304a888d1a9cdb03a473b4ba843f6f2f46eef3b32",
+        "email": "user@email.com",
+        "inventory": {
+            "rice": [
+                100,
+                "kg"
+            ]
+        },
+        "events": {}
     }
 }

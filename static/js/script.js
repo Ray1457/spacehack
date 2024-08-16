@@ -43,3 +43,48 @@ function toggleresponsive() {
   wrapper.classList.toggle('wrapper-active')
   nav.classList.toggle('mobile-active')
 }
+
+
+  particlesJS('particles-js', {
+    "particles": {
+      "number": {
+        "value": 75,
+        "density": {
+          "enable": true,
+          "value_area": 1000
+        }
+      },
+      "color": {
+        "value": "#dadada"
+      },
+      "size": {
+        "value": 3,
+        "random": true
+      },
+      "line_linked": {
+        "enable": false
+      },
+      "move": {
+        "enable": true,
+        "speed": 0.5,
+        "direction": "none",
+        "random": false,
+        "out_mode": "out"
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      }
+    },
+    "retina_detect": true
+  });

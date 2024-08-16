@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div id="particles-js"></div>
+<div class="loading-wrapper brightness=[0.85]">
+    <video id="loadingVideo" autoplay muted width="300" height="300">
+        <source src="../static/img/loadin anim 2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
 <main class="p-0 m-0">
     <section class="text-[#dadada]">
       <div class="container flex flex-col justify-center p-6 mx-auto mt-8 sm:py-12 lg:py-24 lg:mt-16 lg:flex-row lg:justify-between text-[#dadada]">
@@ -14,10 +23,16 @@
               </p>
               <div class="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
                   <a rel="noopener noreferrer" href="{{url_for('about')}}" class="px-8 py-3 text-lg font-semibold rounded-lg bg-cyan-600 text-gray-50 hover:bg-cyan-400 transition">Get Started</a>
+                  {% if current_user.is_authenticated %}
+                  <a href="https://www.netflix.com/" class=" text-center interactable px-4 flex items-center py-4 rounded-lg hover:bg-slate-700 " target="_blank">
+                    <ion-icon name="play-circle-outline" class="text-white text-2xl mr-2"></ion-icon>
+                    Watch
+                  </a>
+                {% endif %}
               </div>
           </div>
           <div class="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-              <img data-aos="fade-left" src="../static/img/astronaut.jpg" alt="Space Station" class="object-contain h-96 sm:h-80 lg:h-[30rem] xl:h-112 2xl:h-128 brightness-[0.85]">
+              <img data-aos="fade-left" src="../static/img/astronaut.png" alt="Space Station" class="object-contain h-96 sm:h-80 lg:h-[30rem] xl:h-112 2xl:h-128 brightness-[0.85]">
           </div>
       </div>
     </section>
@@ -102,15 +117,16 @@
             </div>
         </div>
         <div class="flex flex-col items-center p-4">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#0ea5e9" class="w-8 h-8 text-yellow-600">
-            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
-          </svg>
-          <h3 class="my-3 text-3xl font-semibold">Yoga</h3>
-          <div class="space-y-1 leading-tight text-center">
-            <p class="font-bold">Mind-Body Balance</p>
-            <p class="text-center max-w-sm">Enhance your physical and mental well-being with our specialized yoga programs. Our sessions focus on flexibility, strength, and relaxation techniques, tailored to suit all levels of experience.</p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#0ea5e9" class="w-8 h-8 text-yellow-600">
+                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+            </svg>
+            <h3 class="my-3 text-3xl font-semibold">SOS Signal</h3>
+            <div class="space-y-1 leading-tight text-center">
+              <p class="font-bold">Emergency Assistance</p>
+              <p class="text-center max-w-sm">Activate an immediate rescue mission in case of an emergency. Our SOS service is designed to provide quick and effective response to ensure your safety and well-being.</p>
+            </div>
           </div>
-        </div>
+          
     
       </div>
     </section>
